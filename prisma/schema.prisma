@@ -1,0 +1,32 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String        @id @default(uuid())
+  email         String        @unique
+  name          String
+  picture       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  sleepRecords  SleepRecord[] // Relasi: 1 User bisa punya banyak data tidur
+}
+
+model SleepRecord {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date        DateTime 
+  sleepTime   DateTime 
+  wakeTime    DateTime 
+  quality     String   
+  usedGadget  Boolean  @default(false) // Kolom baru untuk Gadget
+  didExercise Boolean  @default(false) // Kolom baru untuk Olahraga
+  createdAt   DateTime @default(now())
+}

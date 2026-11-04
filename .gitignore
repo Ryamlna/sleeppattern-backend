@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# File Rahasia / Kredensial Server & Database
+.env
+config.json
+*.pem
+
+# File Log
+logs/
+*.log
+
+# File Database Lokal (jika ada SQLite / JSON data rahasia)
+*.sqlite
