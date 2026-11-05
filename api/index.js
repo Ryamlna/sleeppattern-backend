@@ -9,11 +9,13 @@ const prisma = new PrismaClient();
 // ==========================================
 // MIDDLEWARE WAJIB
 // ==========================================
+const cors = require('cors');
+
 app.use(cors({
   origin: [
     'http://localhost:5173',
     'https://sleeppattern-frontend.vercel.app'
-  ], 
+  ],
   credentials: true
 }));
 
