@@ -5,7 +5,8 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 model User {
@@ -22,10 +23,10 @@ model SleepRecord {
   id          String   @id @default(uuid())
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date        DateTime 
-  sleepTime   DateTime 
-  wakeTime    DateTime 
-  quality     String   
+  date        DateTime
+  sleepTime   DateTime
+  wakeTime    DateTime
+  quality     String
   usedGadget  Boolean  @default(false) // Kolom baru untuk Gadget
   didExercise Boolean  @default(false) // Kolom baru untuk Olahraga
   createdAt   DateTime @default(now())
